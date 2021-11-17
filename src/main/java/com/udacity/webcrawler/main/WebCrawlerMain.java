@@ -37,13 +37,13 @@ public final class WebCrawlerMain {
     CrawlResult result = crawler.crawl(config.getStartPages());
     CrawlResultWriter resultWriter = new CrawlResultWriter(result);
 
-    String resultPath = this.config.getResultPath();
-    if(resultPath != null || !resultPath.isEmpty()){
-      Path path = Path.of(resultPath);
-      resultWriter.write(path);
+    if(config.getResultPath().isEmpty()){
+      resultWriter.write(new OutputStreamWriter(System.out));
     }
     else {
-      resultWriter.write(new OutputStreamWriter(System.out));
+      Path path = Path.of(config.getResultPath());
+      resultWriter.write(path);
+
     }
     // TODO: Write the profile data to a text file (or System.out if the file name is empty)
   }
