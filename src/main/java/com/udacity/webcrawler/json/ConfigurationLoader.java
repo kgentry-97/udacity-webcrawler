@@ -1,6 +1,5 @@
 package com.udacity.webcrawler.json;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -14,7 +13,6 @@ import java.util.Objects;
 /**
  * A static utility class that loads a JSON configuration file.
  */
-@JsonDeserialize(builder = CrawlerConfiguration.Builder.class)
 public final class ConfigurationLoader {
 
   private final Path path;
@@ -47,7 +45,7 @@ public final class ConfigurationLoader {
    * @param reader a Reader pointing to a JSON string that contains crawler configuration.
    * @return a crawler configuration
    */
-
+  @JsonDeserialize(builder = CrawlerConfiguration.Builder.class)
   public static CrawlerConfiguration read(Reader reader) throws IOException {
     // This is here to get rid of the unused variable warning.
     Objects.requireNonNull(reader);
