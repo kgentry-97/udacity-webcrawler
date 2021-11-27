@@ -45,7 +45,6 @@ public final class WebCrawlerMain {
       resultWriter.write(path);
 
     }
-    // TODO: Write the profile data to a text file (or System.out if the file name is empty)
   }
 
   public static void main(String[] args) throws Exception {
@@ -54,7 +53,6 @@ public final class WebCrawlerMain {
       return;
     }
 
-    System.out.println("have arg and starting now" + args[0]);
     CrawlerConfiguration config = new ConfigurationLoader(Path.of(args[0])).load();
     new WebCrawlerMain(config).run();
   }
