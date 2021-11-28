@@ -37,13 +37,24 @@ public final class WebCrawlerMain {
     CrawlResult result = crawler.crawl(config.getStartPages());
     CrawlResultWriter resultWriter = new CrawlResultWriter(result);
 
-    if(config.getResultPath().isEmpty()){
+    if(config.getResultPath().isEmpty()  ){
+      System.out.println("no result config");
       resultWriter.write(new OutputStreamWriter(System.out));
     }
     else {
+      System.out.println("write result path");
       Path path = Path.of(config.getResultPath());
       resultWriter.write(path);
+    }
 
+    if(config.getProfileOutputPath().isEmpty()){
+      System.out.println("no profiler config");
+      profiler.writeData(new OutputStreamWriter(System.out));
+    }
+    else {
+      System.out.println("writing profiler path");
+      Path path = Path.of(config.getProfileOutputPath());
+      profiler.writeData(path);
     }
   }
 

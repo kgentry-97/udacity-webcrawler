@@ -50,8 +50,8 @@ final class ProfilerImpl implements Profiler {
     return proxy;
   }
 
-  private boolean isProfiled(Class<?> klass) {
-    Method[] methods = klass.getDeclaredMethods();
+  private boolean isProfiled(Class<?> checkKlass) {
+    Method[] methods = checkKlass.getDeclaredMethods();
     if (methods.length == 0) {
       return false;
     }
