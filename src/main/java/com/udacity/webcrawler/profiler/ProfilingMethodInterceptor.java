@@ -1,6 +1,7 @@
 package com.udacity.webcrawler.profiler;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.Clock;
 import java.time.Duration;
@@ -42,8 +43,8 @@ final class ProfilingMethodInterceptor implements InvocationHandler {
     }
     try{
       results = method.invoke(object, args);
-    } catch (Throwable throwable){
-      throw throwable.getCause();
+    } catch (InvocationTargetException throwable){
+      throw throwable.getTargetException();
     }finally {
       if(isProfiled){
         Duration duration = Duration.between(startTime, clock.instant());
